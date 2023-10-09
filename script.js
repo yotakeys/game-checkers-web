@@ -302,9 +302,15 @@ function removeEventListeners() {
 
 function checkForWin() {
     if (blackScore === 0) {
-
+        whiteTurnIndicator.textContent = "White Wins!";
+        whiteTurnIndicator.style.backgroundColor = "green";
+        blackTurnIndicator.textContent = "Black Loses!";
+        blackTurnIndicator.style.backgroundColor = "red";
     } else if (whiteScore === 0) {
-    
+        whiteTurnIndicator.textContent = "Black Wins!";
+        whiteTurnIndicator.style.backgroundColor = "red";
+        blackTurnIndicator.textContent = "White Loses!";
+        blackTurnIndicator.style.backgroundColor = "green";
     }
     changePlayer();
 }

@@ -276,10 +276,12 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
         if (turn && selectedPiece.pieceId < 12) {
             cells[removePiece].innerHTML = "";
             blackScore--
+            blackTurnIndicator.textContent = `Black Turn (Piece ${blackScore})`;
         }
         if (turn === false && selectedPiece.pieceId >= 12) {
             cells[removePiece].innerHTML = "";
             whiteScore--
+            whiteTurnIndicator.textContent = `White Turn (Piece ${whiteScore})`;
         }
     }
     resetSelectedPieceProperties();

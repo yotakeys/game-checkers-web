@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/YOTA.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/images/YOTA.ico" type="image/x-icon">
     <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -13,9 +13,9 @@
     <div class="min-h-screen flex items-center justify-center">
         <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Register</h1>
-            <form method="POST" action="/form" >
+            <form id="register-form">
                 <div class="mb-4">
-                    <label for="nama" class="block mb-2 text-sm text-gray-600">nama</label>
+                    <label for="nama" class="block mb-2 text-sm text-gray-600">Nama</label>
                     <input type="text" id="nama" name="nama"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
                 </div>
@@ -31,12 +31,14 @@
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         required>
                 </div>
-                <button type="submit"
+                <button type="submit" id="submit"
                     class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Register</button>
                 <div>Already have an account <a class="text-slate-500" href="login.html">(Login)</a></div>
                 </form>
         </div>
     </div>
+
+    <script type="text/javascript" src="../static/js/register.js"></script>
 </body>
 
 </html>

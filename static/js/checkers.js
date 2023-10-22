@@ -348,7 +348,7 @@ function checkForWin() {
     if(blackScore == 0 || whiteScore == 0){
         var payload = {
         "nama" : username,
-        "score" : score,
+        "score" : score.toString(),
 
         }
         console.log(payload);
@@ -369,7 +369,7 @@ function checkForWin() {
             .then((resp) => {
                 alert("Add Score berhasil");
                 console.log("resp from server ", resp);
-                // window.location.href = "leaderboard.html";
+                window.location.href = "leaderboard.html";
             })
             .catch((error) => {
                 alert(error)

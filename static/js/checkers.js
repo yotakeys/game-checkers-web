@@ -1,3 +1,38 @@
+let account = document.getElementById("account")
+if(localStorage.getItem("auth") != null){
+
+    fetch("https://ets-pemrograman-web-f.cyclic.app/users/profile", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("auth")}`
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                console.log(response);
+                alert("Get data User Failed, Need Authentication");
+                window.location.href = "login.html";
+            }
+            return response.json();
+        })
+        .then((resp) => {
+            console.log("resp from server ", resp);
+            account.textContent = `${resp.data.nama} (As BLACK)`
+
+        })
+        .catch((error) => {
+            alert(error)
+            console.log("error ", error);
+        });
+}else{
+    alert("Get data User Failed, Need Authentication");
+    window.location.href = "login.html";
+}
+
+
+
+
 const board = [
     null, 0, null, 1, null, 2, null, 3,
     4, null, 5, null, 6, null, 7, null,

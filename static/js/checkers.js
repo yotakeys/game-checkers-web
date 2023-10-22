@@ -1,4 +1,6 @@
 let account = document.getElementById("account")
+let username;
+
 if(localStorage.getItem("auth") != null){
 
     fetch("https://ets-pemrograman-web-f.cyclic.app/users/profile", {
@@ -18,7 +20,8 @@ if(localStorage.getItem("auth") != null){
         })
         .then((resp) => {
             console.log("resp from server ", resp);
-            account.textContent = `${resp.data.nama} (As BLACK)`
+            username = resp.data.nama;
+            account.textContent = `${username} (As BLACK)`
 
         })
         .catch((error) => {
@@ -58,6 +61,7 @@ let blackTurnIndicator = document.getElementById("black-turn-indicator");
 let turn = false;
 let whiteScore = 12;
 let blackScore = 12;
+let score = 0;
 let playerPieces;
 
 
@@ -310,13 +314,15 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
         board[removePiece] = null;
         if (turn && selectedPiece.pieceId < 12) {
             cells[removePiece].innerHTML = "";
-            blackScore--
-            blackTurnIndicator.textContent = `Black Turn (Piece ${blackScore})`;
+            blackScore--;
+            score-=100;
+            blackTurnIndicator.textContent = `Black Turn`;
         }
         if (turn === false && selectedPiece.pieceId >= 12) {
             cells[removePiece].innerHTML = "";
-            whiteScore--
-            whiteTurnIndicator.textContent = `White Turn (Piece ${whiteScore})`;
+            whiteScore--;
+            score+=100;
+            whiteTurnIndicator.textContent = `White Turn`;
         }
     }
     resetSelectedPieceProperties();
@@ -338,6 +344,39 @@ function removeEventListeners() {
 }
 
 function checkForWin() {
+
+    if(blackScore == 0 || whiteScore == 0){
+        var payload = {
+        "nama" : username,
+        "score" : score,
+
+        }
+        console.log(payload);
+        fetch("https://ets-pemrograman-web-f.cyclic.app/scores/score", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    console.log(response);
+                    // throw new Error("Add score failed");
+                }
+                return response.json();
+            })
+            .then((resp) => {
+                alert("Add Score berhasil");
+                console.log("resp from server ", resp);
+                // window.location.href = "leaderboard.html";
+            })
+            .catch((error) => {
+                alert(error)
+                console.log("error ", error);
+            });
+    }
+
     if (blackScore === 0) {
         whiteTurnIndicator.textContent = "White Wins!";
         whiteTurnIndicator.style.backgroundColor = "green";

@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 body{
@@ -71,7 +71,7 @@ p {
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
-    background-color: green;
+    background-color: red;
     font-weight: bold;
 }
 
@@ -79,6 +79,14 @@ p {
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
-    background-color: red;
+    background-color: green;
+    font-weight: bold;
+}
+
+#account {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: grey;
     font-weight: bold;
 }

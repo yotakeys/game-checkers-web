@@ -20,7 +20,7 @@ let whitesPieces = document.getElementsByClassName("white-piece");
 let whiteTurnIndicator = document.getElementById("white-turn-indicator");
 let blackTurnIndicator = document.getElementById("black-turn-indicator");
 
-let turn = true;
+let turn = false;
 let whiteScore = 12;
 let blackScore = 12;
 let playerPieces;

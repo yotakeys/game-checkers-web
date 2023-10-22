@@ -1,5 +1,6 @@
 let account = document.getElementById("account")
 let username;
+let score = 0;
 
 if(localStorage.getItem("auth") != null){
 
@@ -21,7 +22,7 @@ if(localStorage.getItem("auth") != null){
         .then((resp) => {
             console.log("resp from server ", resp);
             username = resp.data.nama;
-            account.textContent = `${username} (As BLACK)`
+            account.textContent = `${username} (As BLACK), Score ${score}`
 
         })
         .catch((error) => {
@@ -61,7 +62,6 @@ let blackTurnIndicator = document.getElementById("black-turn-indicator");
 let turn = false;
 let whiteScore = 12;
 let blackScore = 12;
-let score = 0;
 let playerPieces;
 
 
@@ -316,12 +316,14 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
             cells[removePiece].innerHTML = "";
             blackScore--;
             score-=100;
+            account.textContent = `${username} (As BLACK), Score ${score}`
             blackTurnIndicator.textContent = `Black Turn`;
         }
         if (turn === false && selectedPiece.pieceId >= 12) {
             cells[removePiece].innerHTML = "";
             whiteScore--;
             score+=100;
+            account.textContent = `${username} (As BLACK), Score ${score}`
             whiteTurnIndicator.textContent = `White Turn`;
         }
     }
